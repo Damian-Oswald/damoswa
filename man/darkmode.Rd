@@ -4,7 +4,7 @@
 \alias{darkmode}
 \title{Set graphical parameters to match RStudio dark mode}
 \usage{
-darkmode()
+darkmode(design = NULL)
 }
 \description{
 This function sets the graphical parameters so they match the RStudio dark mode.

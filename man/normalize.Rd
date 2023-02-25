@@ -4,7 +4,7 @@
 \alias{normalize}
 \title{Normalizing a vector}
 \usage{
-normalize(x, na.rm = TRUE)
+normalize(x, na.rm = TRUE, minimum = 0, maximum = 1)
 }
 \description{
 This function normalizes an input vector \code{x}, i.e. it re-scales the vector between 0 and 1.

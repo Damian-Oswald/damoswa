@@ -9,6 +9,8 @@ cross_validate(FUN, x, y, k = 5, r = 1, type = "k-fold", ...)
 \arguments{
 \item{FUN}{The model to repeatedly use as a function. Needs to take exactly four matrix arguments: \code{x_train}, \code{y_train}, \code{x_test}, and \code{y_test}. The function should return whatever evaluation metric we want to use.}
 
+\item{x}{An \eqn{n * p} design matrix of the features to be used by the model.}
+
 \item{y}{A vector of labels.}
 
 \item{k}{Number of parts in which the data is split for the cross validation process.}
@@ -18,8 +20,6 @@ cross_validate(FUN, x, y, k = 5, r = 1, type = "k-fold", ...)
 \item{type}{Type of cross validation. Defaults to \code{"k-fold"}, though leave-one-out cross validation (\code{"LOOCV"}) is available as well.}
 
 \item{...}{Additional parameters for the model \code{FUN}}
-
-\item{X}{An \eqn{n * p} design matrix of the features to be used by the model.}
 }
 \description{
 A function to run an \code{r} times repeated \code{k}-fold cross validation of any sort of model.
