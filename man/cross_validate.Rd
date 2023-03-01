@@ -25,7 +25,7 @@ cross_validate(FUN, x, y, k = 5, r = 1, type = "k-fold", ...)
 A function to run an \code{r} times repeated \code{k}-fold cross validation of any sort of model.
 }
 \examples{
-f <- function(x_train, x_test, y_train, y_test){
+f <- function(x_train, x_test, y_train, y_test, i, j){
     model <- lm(y_train ~ ., data = as.data.frame(x_train))
     y_hat <- predict(model, newdata = as.data.frame(x_test))
     return(damoswa::pred_vs_obs(y_test, y_hat))

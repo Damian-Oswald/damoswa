@@ -11,7 +11,7 @@
 #' @param type Type of cross validation. Defaults to `"k-fold"`, though leave-one-out cross validation (`"LOOCV"`) is available as well.
 #' 
 #' @examples 
-#' f <- function(x_train, x_test, y_train, y_test){
+#' f <- function(x_train, x_test, y_train, y_test, i, j){
 #'     model <- lm(y_train ~ ., data = as.data.frame(x_train))
 #'     y_hat <- predict(model, newdata = as.data.frame(x_test))
 #'     return(damoswa::pred_vs_obs(y_test, y_hat))
@@ -32,16 +32,20 @@ cross_validate <- function(FUN, x, y, k = 5, r = 1, type = "k-fold", ...){
       I <- matrix(c(sample(1:nrow(x)),rep(NA,k-nrow(x)%%k)), ncol = k, byrow = TRUE)
       for (i in 1:k) {
          sink("file")
-         result <- FUN(x_train = as.matrix(x[-na.omit(I[,i]),]),
-                       y_train = as.matrix(y[-na.omit(I[,i])]),
-                       x_test = as.matrix(x[na.omit(I[,i]),]),
-                       y_test = as.matrix(y[na.omit(I[,i])]),
-                       ... = ...)
+         result <- cbind(
+            FUN(x_train = as.matrix(x[-na.omit(I[,i]),]),
+                y_train = as.matrix(y[-na.omit(I[,i])]),
+                x_test = as.matrix(x[na.omit(I[,i]),]),
+                y_test = as.matrix(y[na.omit(I[,i])]),
+                ... = ...),
+            r = j,
+            k = i,
+            i = I[,i]
+         )
          sink()
          results <- rbind(results, result)
          damoswa::progressbar((j-1)*k+i,k*r,"Cross validation")
       }
    }
-   colnames(results) <- names(result)
    return(results)
 }

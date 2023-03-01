@@ -7,8 +7,7 @@ pred_vs_obs <- function(predicted, observed, main = "", fit.col = "cadetblue", p
    
    MSE <- mean((predicted-observed)^2, na.rm = TRUE)
    RMSE <- sqrt(MSE)
-   R2 <- cor(predicted, observed, use = "complete.obs")^2
-   # R2 <- 1 - (sum((predicted-observed)^2))/(sum((observed-mean(observed))^2))
+   R2 <- 1 - (sum((predicted-observed)^2))/(sum((observed-mean(observed))^2))
    
    if(!plot){
       return(c(MSE = MSE, RMSE = RMSE, R2 = R2))
