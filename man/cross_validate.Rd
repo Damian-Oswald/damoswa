@@ -4,7 +4,17 @@
 \alias{cross_validate}
 \title{Run a k-fold cross validation}
 \usage{
-cross_validate(FUN, x, y, k = 5, r = 1, type = "k-fold", ...)
+cross_validate(
+  FUN,
+  x,
+  y,
+  k = 5,
+  r = 1,
+  type = "k-fold",
+  verbose = TRUE,
+  message = "Cross validation",
+  ...
+)
 }
 \arguments{
 \item{FUN}{The model to repeatedly use as a function. Needs to take exactly four matrix arguments: \code{x_train}, \code{y_train}, \code{x_test}, and \code{y_test}. The function should return whatever evaluation metric we want to use.}

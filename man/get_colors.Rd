@@ -4,8 +4,8 @@
 \alias{get_colors}
 \title{Get custom sets of colors}
 \usage{
-get_colors(type = "darkmode")
+get_colors(type = "damoswa")
 }
 \description{
-This function return a list with colors. For now, this is only the list darkmode, which contains the colors used in the RStudio darkmode design.
+This function return a list with colors. For now, this is only the list "darkmode", which contains the colors used in the RStudio "darkmode" design, as well as "damoswa", the color palette used for my personal website.
 }

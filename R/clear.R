@@ -17,6 +17,11 @@ clear <- function(){
    # Clear all plots
    while (!is.null(dev.list()))  dev.off()
    
+   # Clear history
+   write("", file=".blank")
+   loadhistory(".blank")
+   unlink(".blank")
+   
    # Clear console
    cat("\14")
 }

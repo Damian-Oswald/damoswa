@@ -4,7 +4,16 @@
 \alias{normalize}
 \title{Normalizing a vector}
 \usage{
-normalize(x, na.rm = TRUE, minimum = 0, maximum = 1)
+normalize(x, na.rm = TRUE, minimum = 0, maximum = 1, min = NULL, max = NULL)
+}
+\arguments{
+\item{minimum}{The desired minimum of the returned object.}
+
+\item{maximum}{The desired maximum of the returned object.}
+
+\item{min}{The minimum used in the calculation. By default, this is the minimum of \code{x}.}
+
+\item{max}{The minimum used in the calculation. By default, this is the maximum of \code{x}.}
 }
 \description{
 This function normalizes an input vector \code{x}, i.e. it re-scales the vector between 0 and 1.

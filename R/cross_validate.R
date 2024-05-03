@@ -20,7 +20,7 @@
 #' results <- cross_validate(FUN = f, x = mtcars[,-1], y = mtcars[,1], k = 5, r = 100)
 #' 
 #' @export
-cross_validate <- function(FUN, x, y, k = 5, r = 1, type = "k-fold", ...){
+cross_validate <- function(FUN, x, y, k = 5, r = 1, type = "k-fold", verbose = TRUE, message = "Cross validation", ...){
    if(type=="LOOCV") {
       k <- nrow(x)
       r <- 1
@@ -31,7 +31,7 @@ cross_validate <- function(FUN, x, y, k = 5, r = 1, type = "k-fold", ...){
    for (j in 1:r) {
       I <- matrix(c(sample(1:nrow(x)),rep(NA,k-nrow(x)%%k)), ncol = k, byrow = TRUE)
       for (i in 1:k) {
-         sink("file")
+         options(warn = -1)
          result <- cbind(
             FUN(x_train = as.matrix(x[-na.omit(I[,i]),]),
                 y_train = as.matrix(y[-na.omit(I[,i])]),
@@ -42,9 +42,9 @@ cross_validate <- function(FUN, x, y, k = 5, r = 1, type = "k-fold", ...){
             k = i,
             i = I[,i]
          )
-         sink()
+         options(warn = 0)
          results <- rbind(results, result)
-         damoswa::progressbar((j-1)*k+i,k*r,"Cross validation")
+         if(verbose) damoswa::progressbar((j-1)*k+i,k*r,message)
       }
    }
    return(results)

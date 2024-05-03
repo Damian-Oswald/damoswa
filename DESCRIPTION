@@ -1,6 +1,6 @@
 Package: damoswa
 Title: My personal R assistant. This package contains a random set of functions which ought to make my life easier.
-Version: 0.1
+Version: 1.0
 Authors@R: 
     person("Damian", "Damian", , "damoswa@student.ethz.ch", role = "cre",
            comment = c(ORCID = "YOUR-ORCID-ID"))
